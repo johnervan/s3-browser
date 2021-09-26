@@ -26,7 +26,7 @@ export default function Home() {
     setPrefix(getPrefix(router.query.path));
   }, [router]);
   const { data: keyOrPrefixList, error } = useSWR(
-    `/api/list-bucket${prefix ? `?prefix=${prefix}/` : ''}`,
+    `/api/list-objects${prefix ? `?prefix=${prefix}/` : ''}`,
     getFetcher
   );
   return (

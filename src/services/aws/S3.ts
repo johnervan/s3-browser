@@ -1,4 +1,10 @@
-import { ListObjectsV2Command, ListObjectsV2CommandOutput, S3Client } from '@aws-sdk/client-s3';
+import {
+  ListBucketsCommand,
+  ListBucketsCommandOutput,
+  ListObjectsV2Command,
+  ListObjectsV2CommandOutput,
+  S3Client,
+} from '@aws-sdk/client-s3';
 import { IBucketList } from '../../model/s3';
 
 const S3_ENDPOINT_URL = process.env.S3_ENDPOINT_URL || 'https://s3.amazonaws.com';
@@ -9,7 +15,16 @@ const s3 = new S3Client({
   forcePathStyle: true,
 });
 
-export const listBucket = async (prefix = ''): Promise<IBucketList[]> => {
+export const listBuckets = async (): Promise<any> => {
+  try {
+    const response: ListBucketsCommandOutput = await s3.send(new ListBucketsCommand({}));
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
+
+export const listObjects = async (prefix = ''): Promise<IBucketList[]> => {
   try {
     const response: ListObjectsV2CommandOutput = await s3.send(
       new ListObjectsV2Command({

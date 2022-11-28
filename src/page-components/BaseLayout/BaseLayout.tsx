@@ -2,7 +2,11 @@ import Layout, { Content, Header } from 'antd/lib/layout/layout';
 import Head from 'next/head';
 import { FunctionComponent } from 'react';
 
-export const BaseLayout: FunctionComponent = ({ children }) => {
+type BaseLayoutProps = {
+  children?: React.ReactNode;
+};
+
+export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => {
   return (
     <>
       <Head>

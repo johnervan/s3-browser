@@ -27,7 +27,7 @@ const generateBreadcrumbs = (pathList: string[]) => {
 
 export const BucketTable: FunctionComponent<BucketTableProps> = ({ keyOrPrefixList, prefix }) => {
   return (
-    <Table dataSource={keyOrPrefixList} pagination={false}>
+    <Table dataSource={keyOrPrefixList} pagination={false} rowKey="keyOrPrefix">
       <Column
         title={
           prefix
